@@ -1,13 +1,11 @@
 import Teste from './teste'
 
 function App() {
+    const projects = ['pamonha', 'cheetos']
   return (
     <>
-        <Teste title = "ovo direito" >masoq </Teste>
-        <Teste title = "ovo esquedo" >masoq </Teste>
-        <Teste title = "cabelo" >masoq </Teste>
-        <Teste title = "pamonha" >masoq </Teste>
-        <Teste title = "ligui ofi legendis" >masoq </Teste>
+        <Teste title = "ovo direito" />
+        ul
     </>
   );
 }
