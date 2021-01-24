@@ -1,4 +1,4 @@
-import Teste from './teste'
+import Teste from './services/teste'
 import {useState} from 'react'
 import './App.css'
 import bg from './assets/background.jpg'
