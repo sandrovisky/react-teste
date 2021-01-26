@@ -1,26 +1,39 @@
 import Teste from './components/teste'
-import {useState} from 'react'
+import React, { useState, useEffect } from 'react';
 import './App.css'
-import bg from './assets/background.jpg'
+import api from './services/api'
 
 function App() {
 
-    const [projects, setProjects] = useState(['pamonha', 'cheetos'])
+    const [projects, setProjects] = useState([])
 
-    function handleAddProject (){
+    useEffect(() => {
+        api.get('/projects').then(response => {
+            setProjects(response.data)
+        })
+    }, [])
+
+    async function handleAddProject (){
         
-        setProjects([...projects, `novo projeto ${Date.now()}`])
+        //setProjects([...projects, `novo projeto ${Date.now()}`])
 
-        console.log(projects)
+        const response = await api.post('projects', {
+            title: `ovo ${Date.now()}`,
+            owner: `com pelo`
+        })
+
+        const project  = response.data
+
+        setProjects([...projects, project])
     }
 
   return (
     <>
         <Teste title = "ovo direito" />
 
-        <img width = {300} src = {bg} alt = "background" />
+        
         <ul>
-            {projects.map((project,x) => <li key = {x}>{project}</li>)}
+            {projects.map((project,x) => <li key = {x}>{project.title}</li>)}
         </ul>
 
         <button type = "button" onClick = {handleAddProject}>Adicionar projeto</button>
